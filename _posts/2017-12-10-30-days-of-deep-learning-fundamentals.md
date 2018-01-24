@@ -21,6 +21,10 @@ The "30 day" is more of a definition of learning scope than a definition of time
 
 ## The Juicy Content
 
+### Computer Vision
 #### Day 1 - Day 2   
-[Multilayer Perceptron on MNIST](/30ddlf/mlp-on-mnist)
-
+[Multilayer Perceptron on MNIST](/30ddlf/mlp-on-mnist)  
+#### Day 3 - Day 6   
+[Introduction to CNN](/30ddlf/intro-level-CNN)  
+#### Day 7 - Day 10   
+[Let's go deeper in CNN](/30ddlf/lets-go-deeper-in-CNN)  
