@@ -12,18 +12,18 @@ If you've been paying close attention, you probably have noticed that the models
 ![History Pic](https://s3.us-east-2.amazonaws.com/hosted-downloadable-files/pic.png)
 <center>Common models and their performance</center>
 
-So what followed after the year of 2014? Nothing much, but we have gone much deeper (In the arena of new network architectures. Developments in other areas like Faster R-CNN are also worth mentioning, but I'll skip it in this post.)
+So what followed after the year of 2014? Nothing much, but we have gone much deeper (In the arena of new network architectures. Developments in other areas are also worth mentioning, but I'll skip it in this post.)
 
 Alexnet from 2012 had 5 convolutional layers. The network took between 5 to 6 days to train on two GTX 580s. It may sound scary but remember Nvidia only debuted its consumer-level products of Maxwell (namely, GTX 900 series) in late 2014, and that is almost two generation old at the time of writing (Volta is now out on Titan, but still no GeForce yet.) Computational power has exponentially exploded since then. These structures can now be trained on your gaming PC for less than a few hours. In 2014 we also see VGG nets swept ImageNet 2014 competition. They varied in depths but the top performance came out from the VGG-16, which is a 16 layer architecture. 
 
-So how deep are we now? It might make your jaw drop. I still remember when I first took my neural network course in the 3rd year of uni (late 2015), the prof showed us a picture of the structure of GoogleNet. It was a whopping 22 layer network and the entire class was stunned by how deep it was. But take a look at what we have now. We have the four versions of Inception on one hand (Inception v1 is GoogleNet), with depths varying from several tens of convolutional layers. And then we have the monstrous 152 layer Resnet-152 on the other hand. Oh, how wonderful life is.
+So how deep are we now? It might make your jaw drop. I still remember when I first took my neural network course in the 3rd year of uni (late 2015), the prof showed us a picture of the structure of GoogleNet. It was a whopping 22 layer network and the entire class was stunned by how deep it was. But take a look at what we have now. We have the four versions of Inception on one hand, with depths varying from several tens of convolutional layers. And then we have the monstrous 152 layer Resnet-152 on the other hand. Oh, how wonderful life is.
 
 ![Resnet pic](https://s3.us-east-2.amazonaws.com/hosted-downloadable-files/Screen+Shot+2018-01-17+at+3.37.14+PM.png)
 <center>Blocks used in ResNet</center>
 <center>Left, a "building block" for ResNet-34 </center>
 <center>Right, a "bottleneck block" for ResNet-50/101/152 </center>
 
-After digging around a little bit, I decided to code up the Resnet architecture and see how good it performs on CIFAR-10/100 datasets. I'll write a bit in Q&A about Inceptions, and its comparison with ResNets.
+After digging around a bit, I decided to code up the Resnet architecture and see how good it performs on CIFAR-10/100 datasets. I'll write a bit in Q&A about Inceptions.
 
 ## Day 7
 
@@ -35,7 +35,7 @@ After digging around a little bit, I decided to code up the Resnet architecture 
 #### Q & A: 
 1. What is the difference between Pytorch and TensorFlow?
 
-    The single most important difference is that Pytorch uses automatic differentiation while TensorFlow uses static computational graph (SCG). That means, in TensorFlow, you first define everything before you run the data through the graph. The pros of SCG are that it's much easier to optimize. You can do tricks on a much lower level like preallocating resources and precompiling models. The cons are pretty obvious too: You practically can't debug. It's extremely cumbersome to debug in an SCG setting as the data is not there yet and you have no idea what could go wrong at runtime.
+    The single most important difference is that Pytorch uses automatic differentiation while TensorFlow uses static computational graph (SCG). That means, in TensorFlow, you first define everything before you run the data through the graph. One of the pros of SCG is that it's much easier to optimize. You can do tricks on a much lower level like preallocating resources and precompiling models. The cons are pretty obvious too: You practically can't debug. It's extremely cumbersome to debug in an SCG setting as the data is not there yet and you have no idea what could go wrong at runtime.
 
     Pytorch on the other hand, lets you debug like a breeze. Even if you don't use an IDE or debugger, simply printing out the stack would probably help you catch any tiny bug you have written. Autograd is another mechanism that separates Pytorch and TensorFlow. Autograd is a define-by-run framework that's used as the core of Pytorch differentiation logics. The backprop steps are defined by how the code is run, which means that every single iteration can be different, and you can change the model mid training. 
 
